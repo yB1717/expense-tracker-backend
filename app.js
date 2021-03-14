@@ -7,6 +7,8 @@ const cors = require("cors");
 const usersRoutes = require("./routes/api/users");
 const expensesRoutes = require("./routes/api/expenses");  
 
+const MONGO_URI = require('./config/keys').mongoURI;
+
 const app = express();
 const PORT = process.env.PORT || 4002;
 
@@ -30,7 +32,7 @@ app.use('/', (req, res) => {
 })
 
 mongoose.connect(
-  "mongodb+srv://yb1717:yash1717@onlineshop-zdv77.mongodb.net/expenseTracker?w=majority",
+  MONGO_URI,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => {
     console.log("Connection with database established");
