@@ -10,6 +10,7 @@ const validateLoginInput = require("../../validations/login");
 const User = require("../../Model/users").User;
 
 router.post("/signup", (req, res) => {
+  console.log("signup")
   const { message, isValid } = validateRegisterInput(req.body);
 
   if (!isValid) {
@@ -59,7 +60,7 @@ router.post("/login", (req, res) => {
   if (!isValid) {
     return res.status(200).json(message);
   }
-
+  console.log("hi")
   const { email, password } = req.body;
   User.findOne({ email: email }, (err, user) => {
     if (err) {

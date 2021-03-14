@@ -16,20 +16,18 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-app.use(cors({
-  credentials: true,
-}));
+app.use(cors());
 
 // Passport middleware
 app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 // Routes
+app.use("/api/users", usersRoutes);
+app.use("/api/expense", expensesRoutes);
 app.use('/', (req, res) => {
   res.send("/ route works")
 })
-app.use("/api/users", usersRoutes);
-app.use("/api/expense", expensesRoutes);
 
 mongoose.connect(
   "mongodb+srv://yb1717:yash1717@onlineshop-zdv77.mongodb.net/expenseTracker?w=majority",
